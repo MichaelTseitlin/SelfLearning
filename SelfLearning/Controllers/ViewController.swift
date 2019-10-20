@@ -17,11 +17,19 @@ enum SegueIdentifier: String, CustomStringConvertible {
     }
 }
 
-class ViewController: UIViewController {
+enum TypeOfCell: String, CustomStringConvertible {
+    case FirstCollectionViewCell
+    case SecondCollectionViewCell
+    
+    var description: String {
+        return self.rawValue
+    }
+}
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - @IACtions
@@ -44,12 +52,14 @@ class ViewController: UIViewController {
         case .toFirstCollectionView:
             print(#line, #function, "firstCollectionView")
             let destination = segue.destination as? CustomCollectionViewController
-            destination?.reuseIdentifier = TypeOfCell.FirstCollectionViewCell.description
-            destination?.items = ["First", "Second", "Third"]
+            destination?.itemsDidLoad(
+                items: ["First", "Second", "Third"],
+                reuseIdentifier: TypeOfCell.FirstCollectionViewCell.description)
         case .toSecondCollectionView:
             let destination = segue.destination as? CustomCollectionViewController
-            destination?.reuseIdentifier = TypeOfCell.SecondCollectionViewCell.description
-            destination?.items = ["Fourth", "Fifth", "Sixth"]
+            destination?.itemsDidLoad(
+                items: [1, 2, 3],
+                reuseIdentifier: TypeOfCell.SecondCollectionViewCell.description)
         }
     }
 

@@ -8,51 +8,14 @@
 
 import UIKit
 
-enum TypeOfCell: String, CustomStringConvertible {
-    
-    case FirstCollectionViewCell
-    case SecondCollectionViewCell
-    
-    var description: String {
-        return self.rawValue
-    }
-}
+protocol MyProtocol {}
 
 class CustomCollectionViewController: UICollectionViewController {
-    
-    var items: [String] = []
-    var reuseIdentifier: String?
+
+    var dataSource: CollectionViewDataSource<MyProtocol>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        registerCell(by: reuseIdentifier)
-    }
-    
-    // MARK: UICollectionViewDataSource
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let reuseIdentifier = reuseIdentifier else { return UICollectionViewCell() }
-        
-        let cellIdentifier = TypeOfCell(rawValue: reuseIdentifier)
-        
-        switch cellIdentifier {
-        case .FirstCollectionViewCell:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FirstCollectionViewCell
-            cell.textLabel.text = items[indexPath.row]
-            return cell
-        case .SecondCollectionViewCell:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SecondCollectionViewCell
-            cell.textLabel.text = items[indexPath.row]
-            return cell
-        case .none:
-            return UICollectionViewCell()
-        }
     }
     
     // MARK: - Custom Methods
@@ -64,6 +27,19 @@ class CustomCollectionViewController: UICollectionViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    func itemsDidLoad(items: [MyProtocol], reuseIdentifier: String) {
+        let dataSource = CollectionViewDataSource(
+        models: items,
+        reuseIdentifier: reuseIdentifier)
+        { (item, cell) in
+            cell.backgroundColor = .blue
+            print(#line, #function, item)
+        }
+        
+        self.dataSource = dataSource
+        collectionView.dataSource = dataSource
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -73,3 +49,6 @@ extension CustomCollectionViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
 }
+
+extension String: MyProtocol {}
+extension Int: MyProtocol {}

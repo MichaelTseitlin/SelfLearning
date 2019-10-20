@@ -3,4 +3,54 @@
    uuid = "1341DEF2-130E-430D-8C4C-F64D51B37B7E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C5C02C8-6B7E-4C1B-AF5A-E1AE8AB443E4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfLearning/Controllers/CustomCollectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "CustomCollectionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6C5C02C8-6B7E-4C1B-AF5A-E1AE8AB443E4 - a94dc5a686a41460"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SelfLearning.CustomCollectionViewController.itemsDidLoad(items: Swift.Array&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "SelfLearning"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/SelfLearning/SelfLearning/Controllers/CustomCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "6C5C02C8-6B7E-4C1B-AF5A-E1AE8AB443E4 - 2c77c3d9f6460a3f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, __C.UICollectionViewCell) -&gt; () in SelfLearning.CustomCollectionViewController.itemsDidLoad(items: Swift.Array&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "SelfLearning"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/SelfLearning/SelfLearning/Controllers/CustomCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
