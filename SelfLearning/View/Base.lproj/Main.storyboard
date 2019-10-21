@@ -46,31 +46,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hbi-BF-CEI">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="316" height="152"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="oYl-fr-0hQ" customClass="UserCell" customModule="SelfLearning" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="49" y="0.0" width="316" height="152"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EWg-Gb-QAX">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyI-y0-qSW">
-                                            <rect key="frame" x="4" y="14.5" width="42" height="21"/>
+                                            <rect key="frame" x="137" y="65.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRf-g8-5vQ">
+                                            <rect key="frame" x="121" y="96.5" width="74" height="30"/>
+                                            <state key="normal" title="It is button"/>
+                                            <connections>
+                                                <action selector="buttonPressedWithSender:" destination="oYl-fr-0hQ" eventType="touchUpInside" id="dH1-AQ-XQf"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="yyI-y0-qSW" firstAttribute="centerY" secondItem="EWg-Gb-QAX" secondAttribute="centerY" id="G5h-zp-ng8"/>
+                                        <constraint firstItem="lRf-g8-5vQ" firstAttribute="top" secondItem="yyI-y0-qSW" secondAttribute="bottom" constant="10" id="Zvp-PU-DhX"/>
+                                        <constraint firstItem="lRf-g8-5vQ" firstAttribute="centerX" secondItem="EWg-Gb-QAX" secondAttribute="centerX" id="iZ8-1j-EgM"/>
                                         <constraint firstItem="yyI-y0-qSW" firstAttribute="centerX" secondItem="EWg-Gb-QAX" secondAttribute="centerX" id="nUd-BR-DhF"/>
                                     </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="316" height="152"/>
                                 <connections>
                                     <outlet property="textLabel" destination="yyI-y0-qSW" id="RqQ-cs-9JP"/>
                                 </connections>
@@ -85,7 +95,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zta-ae-0pA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="113"/>
+            <point key="canvasLocation" x="1895.6521739130437" y="112.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhO-8s-9BQ">

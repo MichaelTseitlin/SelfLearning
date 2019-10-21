@@ -10,10 +10,13 @@ import UIKit
 
 extension String: MyProtocol {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as? UserCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.reuseId, for: indexPath) as? UserCell else {
             fatalError()
         }
-        
+        cell.buttonAction = {
+            cell.indexPath = indexPath
+            print(#line, #function, cell.indexPath)
+        }
         cell.configure(data: self)
         return cell
     }

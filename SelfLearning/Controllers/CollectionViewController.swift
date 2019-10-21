@@ -13,6 +13,7 @@ protocol MyProtocol {
 }
 
 protocol ConfigurableCell {
+    static var reuseId: String { get }
     func configure(data: MyProtocol)
 }
 
