@@ -14,8 +14,8 @@
 		844C502A2359A41F00219025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C50292359A41F00219025 /* Assets.xcassets */; };
 		844C502D2359A41F00219025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C502B2359A41F00219025 /* LaunchScreen.storyboard */; };
 		84AE7579235DACB80010E895 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7578235DACB80010E895 /* CollectionViewController.swift */; };
-		84AE757D235DBF710010E895 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE757C235DBF710010E895 /* Extensions.swift */; };
-		84F08157235D9A0600688195 /* CollectionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F08156235D9A0600688195 /* CollectionCellConfigurator.swift */; };
+		84AE757D235DBF710010E895 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE757C235DBF710010E895 /* Extension+String.swift */; };
+		84AE757F235DC1380010E895 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE757E235DC1380010E895 /* Extension+Int.swift */; };
 		84F08159235DA1D900688195 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F08158235DA1D900688195 /* UserCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,8 +29,8 @@
 		844C502C2359A41F00219025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844C502E2359A41F00219025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84AE7578235DACB80010E895 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		84AE757C235DBF710010E895 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		84F08156235D9A0600688195 /* CollectionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellConfigurator.swift; sourceTree = "<group>"; };
+		84AE757C235DBF710010E895 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		84AE757E235DC1380010E895 /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		84F08158235DA1D900688195 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				84AE757B235DBF560010E895 /* Extensions */,
-				84AE757A235DBBFF0010E895 /* Helpers */,
 				844C50202359A41700219025 /* AppDelegate.swift */,
 				844C50222359A41700219025 /* SceneDelegate.swift */,
 				844C50462359F3CD00219025 /* Controllers */,
@@ -95,18 +94,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		84AE757A235DBBFF0010E895 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				84F08156235D9A0600688195 /* CollectionCellConfigurator.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		84AE757B235DBF560010E895 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				84AE757C235DBF710010E895 /* Extensions.swift */,
+				84AE757C235DBF710010E895 /* Extension+String.swift */,
+				84AE757E235DC1380010E895 /* Extension+Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,12 +175,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				844C50252359A41700219025 /* ViewController.swift in Sources */,
-				84F08157235D9A0600688195 /* CollectionCellConfigurator.swift in Sources */,
+				84AE757F235DC1380010E895 /* Extension+Int.swift in Sources */,
 				84AE7579235DACB80010E895 /* CollectionViewController.swift in Sources */,
 				84F08159235DA1D900688195 /* UserCell.swift in Sources */,
 				844C50212359A41700219025 /* AppDelegate.swift in Sources */,
 				844C50232359A41700219025 /* SceneDelegate.swift in Sources */,
-				84AE757D235DBF710010E895 /* Extensions.swift in Sources */,
+				84AE757D235DBF710010E895 /* Extension+String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
