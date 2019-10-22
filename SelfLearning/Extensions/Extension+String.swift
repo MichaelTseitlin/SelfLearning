@@ -13,11 +13,14 @@ extension String: MyProtocol {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.reuseId, for: indexPath) as? UserCell else {
             fatalError()
         }
-        cell.buttonAction = {
-            cell.indexPath = indexPath
-            print(#line, #function, cell.indexPath)
-        }
+        cell.cellDelegate = self
         cell.configure(data: self)
         return cell
+    }
+}
+
+extension String: CollectionCellDelegate {
+    func collectionCell(_ collectionView: UICollectionView, didSelect button: UIButton, for indexPath: IndexPath) {
+        print(#line, #function, collectionView, indexPath)
     }
 }

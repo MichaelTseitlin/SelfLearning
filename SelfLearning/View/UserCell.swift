@@ -10,8 +10,7 @@ import UIKit
 
 class UserCell: UICollectionViewCell, ConfigurableCell {
     
-    var indexPath = IndexPath()
-    var buttonAction: (() -> ())?
+    var cellDelegate: CollectionCellDelegate?
     
     static var reuseId: String {
         return String(describing: self)
@@ -25,7 +24,10 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
         self.backgroundColor = .yellow
     }
     
-    @IBAction func buttonPressed(sender: Any) {
-        buttonAction?()
+    @IBAction func buttonPressed(sender: UIButton) {
+        guard let indexPath = indexPath,
+        let collectionView = collectionView else { return }
+        
+        cellDelegate?.collectionCell(collectionView, didSelect: sender, for: indexPath)
     }
 }

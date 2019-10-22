@@ -17,27 +17,37 @@ protocol ConfigurableCell {
     func configure(data: MyProtocol)
 }
 
+protocol CollectionCellDelegate {
+    func collectionCell(_ collectionView: UICollectionView, didSelect button: UIButton, for indexPath: IndexPath)
+}
+
 class CollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    var items = [MyProtocol]()
+    var items = [[MyProtocol]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
+        items = [["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"],
+                 [1,2,3,4,5,6,7,8,9,10]]
+        collectionView.registerNibForCellClass(FirstCollectionViewCell.self)
     }
     
     // MARK: UICollectionViewDataSource
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return items.count
     }
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items[section].count
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = items[indexPath.row]
+        let model = items[indexPath.section]
         
-        let cell = model.collectionView(collectionView, cellForItemAt: indexPath)
+        let cell = model[indexPath.row] .collectionView(collectionView, cellForItemAt: indexPath)
         
         return cell
     }
