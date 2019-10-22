@@ -10,18 +10,11 @@ import UIKit
 
 extension Int: MyProtocol {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstCollectionViewCell.reuseId, for: indexPath) as? FirstCollectionViewCell else {
+        guard let cell: FirstCollectionViewCell = collectionView.dequeueReusableCell(indexPath: indexPath) else {
             fatalError()
         }
         
-        cell.cellDelegate = self
         cell.configure(data: self)
         return cell
-    }
-}
-
-extension Int: CollectionCellDelegate {
-    func collectionCell(_ collectionView: UICollectionView, didSelect button: UIButton, for indexPath: IndexPath) {
-        print(#line, #function, collectionView, indexPath)
     }
 }

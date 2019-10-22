@@ -9,16 +9,15 @@
 import UIKit
 
 protocol MyProtocol {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    func collectionView (_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
 }
 
 protocol ConfigurableCell {
-    static var reuseId: String { get }
     func configure(data: MyProtocol)
 }
 
-protocol CollectionCellDelegate {
-    func collectionCell(_ collectionView: UICollectionView, didSelect button: UIButton, for indexPath: IndexPath)
+protocol CollectionCellDelegate: class {
+    func collectionCell(didSelect cell: UICollectionViewCell)
 }
 
 class CollectionViewController: UICollectionViewController {
@@ -49,6 +48,12 @@ class CollectionViewController: UICollectionViewController {
         
         let cell = model[indexPath.row] .collectionView(collectionView, cellForItemAt: indexPath)
         
+        if let userCell = cell as? UserCell {
+            userCell.cellDelegate = self
+        } else if let firstCollectionViewCell = cell as? FirstCollectionViewCell {
+            firstCollectionViewCell.cellDelegate = self
+        }
+        
         return cell
     }
 }
@@ -57,5 +62,13 @@ class CollectionViewController: UICollectionViewController {
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: collectionView.frame.width - 20, height: 100)
+    }
+}
+
+extension CollectionViewController: CollectionCellDelegate {
+   func collectionCell(didSelect cell: UICollectionViewCell) {
+        if let indexPath = collectionView.indexPath(for: cell) {
+            print(#line, #function, indexPath)
+        }
     }
 }

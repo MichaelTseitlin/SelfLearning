@@ -9,37 +9,26 @@
 import UIKit
 
 class FirstCollectionViewCell: UICollectionViewCell, ConfigurableCell {
-        
-    var cellDelegate: CollectionCellDelegate?
+    
+    weak var cellDelegate: CollectionCellDelegate?
     
     @IBOutlet weak var textLabel: UILabel!
     
     @IBAction func firstButtonAction(sender: UIButton) {
-        guard let indexPath = indexPath,
-        let collectionView = collectionView else { return }
-        
-        cellDelegate?.collectionCell(collectionView, didSelect: sender, for: indexPath)
+        cellDelegate?.collectionCell(didSelect: self)
     }
     
     @IBAction func secondButtonAction(sender: UIButton) {
-        guard let indexPath = indexPath,
-        let collectionView = collectionView else { return }
-
-        cellDelegate?.collectionCell(collectionView, didSelect: sender, for: indexPath)
+        cellDelegate?.collectionCell(didSelect: self)
+        
     }
     
     @IBAction func thirdButtonAction(sender: UIButton) {
-        guard let indexPath = indexPath,
-        let collectionView = collectionView else { return }
-
-        cellDelegate?.collectionCell(collectionView, didSelect: sender, for: indexPath)
+        cellDelegate?.collectionCell(didSelect: self)
+        
     }
     
     // MARK: - ConfigurableCell
-    
-    static var reuseId: String {
-        return String(describing: self)
-    }
     
     func configure(data: MyProtocol) {
         guard let data = data as? Int else { return }

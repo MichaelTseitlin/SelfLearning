@@ -14,7 +14,6 @@
 		844C502A2359A41F00219025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C50292359A41F00219025 /* Assets.xcassets */; };
 		844C502D2359A41F00219025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C502B2359A41F00219025 /* LaunchScreen.storyboard */; };
 		8463B9EC235EF60D0023366A /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463B9EB235EF60D0023366A /* Extension+UICollectionView.swift */; };
-		8463B9EE235EFA290023366A /* Extension+UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463B9ED235EFA290023366A /* Extension+UICollectionViewCell.swift */; };
 		84AE7579235DACB80010E895 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7578235DACB80010E895 /* CollectionViewController.swift */; };
 		84AE757D235DBF710010E895 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE757C235DBF710010E895 /* Extension+String.swift */; };
 		84AE757F235DC1380010E895 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE757E235DC1380010E895 /* Extension+Int.swift */; };
@@ -33,7 +32,6 @@
 		844C502C2359A41F00219025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844C502E2359A41F00219025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8463B9EB235EF60D0023366A /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
-		8463B9ED235EFA290023366A /* Extension+UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionViewCell.swift"; sourceTree = "<group>"; };
 		84AE7578235DACB80010E895 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		84AE757C235DBF710010E895 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		84AE757E235DC1380010E895 /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				84AE757C235DBF710010E895 /* Extension+String.swift */,
 				84AE757E235DC1380010E895 /* Extension+Int.swift */,
 				8463B9EB235EF60D0023366A /* Extension+UICollectionView.swift */,
-				8463B9ED235EFA290023366A /* Extension+UICollectionViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -201,7 +198,6 @@
 				84F08159235DA1D900688195 /* UserCell.swift in Sources */,
 				8463B9EC235EF60D0023366A /* Extension+UICollectionView.swift in Sources */,
 				844C50212359A41700219025 /* AppDelegate.swift in Sources */,
-				8463B9EE235EFA290023366A /* Extension+UICollectionViewCell.swift in Sources */,
 				844C50232359A41700219025 /* SceneDelegate.swift in Sources */,
 				84AE757D235DBF710010E895 /* Extension+String.swift in Sources */,
 				84F1EA68235EE6B700A7BC1F /* FirstCollectionViewCell.swift in Sources */,

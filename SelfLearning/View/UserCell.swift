@@ -10,12 +10,8 @@ import UIKit
 
 class UserCell: UICollectionViewCell, ConfigurableCell {
     
-    var cellDelegate: CollectionCellDelegate?
-    
-    static var reuseId: String {
-        return String(describing: self)
-    }
-    
+    weak var cellDelegate: CollectionCellDelegate?
+
     @IBOutlet weak var textLabel: UILabel!
     
     func configure(data: MyProtocol) {
@@ -25,9 +21,7 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
     }
     
     @IBAction func buttonPressed(sender: UIButton) {
-        guard let indexPath = indexPath,
-        let collectionView = collectionView else { return }
+        cellDelegate?.collectionCell(didSelect: self)
         
-        cellDelegate?.collectionCell(collectionView, didSelect: sender, for: indexPath)
     }
 }
