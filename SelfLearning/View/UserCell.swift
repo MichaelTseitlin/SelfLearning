@@ -21,6 +21,6 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
     }
     
     @IBAction func showMessage(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showMessage)
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showMessage(self))
     }
 }

@@ -15,16 +15,16 @@ class FirstCollectionViewCell: UICollectionViewCell, ConfigurableCell {
     @IBOutlet weak var textLabel: UILabel!
     
     @IBAction func showPicture(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showPicture)
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showPicture(self))
     }
     
     @IBAction func showVideo(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showVideo)
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showVideo(self))
         
     }
     
     @IBAction func showSettings(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showSettings)
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showVideo(self))
         
     }
     

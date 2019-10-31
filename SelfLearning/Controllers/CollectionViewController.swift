@@ -21,10 +21,10 @@ protocol CollectionCellDelegate: class {
 }
 
 enum ButtonAction {
-    case showMessage
-    case showPicture
-    case showVideo
-    case showSettings
+    case showMessage(UserCell)
+    case showPicture(FirstCollectionViewCell)
+    case showVideo(FirstCollectionViewCell)
+    case showSettings(FirstCollectionViewCell)
 }
 
 class CollectionViewController: UICollectionViewController {
@@ -40,7 +40,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.registerNibForCellClass(FirstCollectionViewCell.self)
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return items.count
@@ -66,6 +66,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - CollectionCellDelegate
 extension CollectionViewController: CollectionCellDelegate {
     func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
         if let indexPath = collectionView.indexPath(for: cell) {
