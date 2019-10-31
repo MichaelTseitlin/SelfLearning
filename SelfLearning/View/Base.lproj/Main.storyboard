@@ -66,10 +66,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRf-g8-5vQ">
-                                            <rect key="frame" x="121" y="96.5" width="74" height="30"/>
-                                            <state key="normal" title="It is button"/>
+                                            <rect key="frame" x="127" y="96.5" width="62" height="30"/>
+                                            <state key="normal" title="Message"/>
                                             <connections>
-                                                <action selector="buttonPressedWithSender:" destination="oYl-fr-0hQ" eventType="touchUpInside" id="dH1-AQ-XQf"/>
+                                                <action selector="showMessageWithSender:" destination="oYl-fr-0hQ" eventType="touchUpInside" id="dH1-AQ-XQf"/>
                                             </connections>
                                         </button>
                                     </subviews>

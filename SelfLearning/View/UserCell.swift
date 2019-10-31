@@ -20,8 +20,7 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
         self.backgroundColor = .yellow
     }
     
-    @IBAction func buttonPressed(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self)
-        
+    @IBAction func showMessage(sender: UIButton) {
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showMessage)
     }
 }

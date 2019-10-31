@@ -9,11 +9,11 @@
 import UIKit
 
 extension Int: MyProtocol {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, viewController: UIViewController) -> UICollectionViewCell {
         guard let cell: FirstCollectionViewCell = collectionView.dequeueReusableCell(indexPath: indexPath) else {
             fatalError()
         }
-        
+        cell.cellDelegate = viewController as? CollectionCellDelegate
         cell.configure(data: self)
         return cell
     }

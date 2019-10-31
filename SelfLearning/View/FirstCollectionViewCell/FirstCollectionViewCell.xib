@@ -23,27 +23,27 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-CR-Uns" userLabel="Stack Of Buttons">
-                        <rect key="frame" x="34" y="50" width="110" height="30"/>
+                        <rect key="frame" x="6" y="50" width="166" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hce-hd-sgH">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                <state key="normal" title="1"/>
+                                <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
+                                <state key="normal" title="Picture"/>
                                 <connections>
-                                    <action selector="firstButtonActionWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="flX-IM-uhb"/>
+                                    <action selector="showPictureWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="flX-IM-uhb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-vP-ydB">
-                                <rect key="frame" x="40" y="0.0" width="30" height="30"/>
-                                <state key="normal" title="2"/>
+                                <rect key="frame" x="59" y="0.0" width="40" height="30"/>
+                                <state key="normal" title="Video"/>
                                 <connections>
-                                    <action selector="secondButtonActionWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="dZq-n9-gY3"/>
+                                    <action selector="showVideoWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="dZq-n9-gY3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fR-eq-LNK">
-                                <rect key="frame" x="80" y="0.0" width="30" height="30"/>
-                                <state key="normal" title="3"/>
+                                <rect key="frame" x="109" y="0.0" width="57" height="30"/>
+                                <state key="normal" title="Settings"/>
                                 <connections>
-                                    <action selector="thirdButtonActionWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="bcG-uR-J28"/>
+                                    <action selector="showSettingsWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="bcG-uR-J28"/>
                                 </connections>
                             </button>
                         </subviews>

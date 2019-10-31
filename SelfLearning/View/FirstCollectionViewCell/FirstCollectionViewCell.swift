@@ -14,17 +14,17 @@ class FirstCollectionViewCell: UICollectionViewCell, ConfigurableCell {
     
     @IBOutlet weak var textLabel: UILabel!
     
-    @IBAction func firstButtonAction(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self)
+    @IBAction func showPicture(sender: UIButton) {
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showPicture)
     }
     
-    @IBAction func secondButtonAction(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self)
+    @IBAction func showVideo(sender: UIButton) {
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showVideo)
         
     }
     
-    @IBAction func thirdButtonAction(sender: UIButton) {
-        cellDelegate?.collectionCell(didSelect: self)
+    @IBAction func showSettings(sender: UIButton) {
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .showSettings)
         
     }
     

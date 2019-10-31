@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MyProtocol {
-    func collectionView (_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    func collectionView (_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, viewController: UIViewController) -> UICollectionViewCell
 }
 
 protocol ConfigurableCell {
@@ -17,7 +17,14 @@ protocol ConfigurableCell {
 }
 
 protocol CollectionCellDelegate: class {
-    func collectionCell(didSelect cell: UICollectionViewCell)
+    func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction)
+}
+
+enum ButtonAction {
+    case showMessage
+    case showPicture
+    case showVideo
+    case showSettings
 }
 
 class CollectionViewController: UICollectionViewController {
@@ -46,14 +53,8 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = items[indexPath.section]
         
-        let cell = model[indexPath.row] .collectionView(collectionView, cellForItemAt: indexPath)
-        
-        if let userCell = cell as? UserCell {
-            userCell.cellDelegate = self
-        } else if let firstCollectionViewCell = cell as? FirstCollectionViewCell {
-            firstCollectionViewCell.cellDelegate = self
-        }
-        
+        let cell = model[indexPath.row] .collectionView(collectionView, cellForItemAt: indexPath, viewController: self)
+  
         return cell
     }
 }
@@ -66,9 +67,9 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CollectionViewController: CollectionCellDelegate {
-   func collectionCell(didSelect cell: UICollectionViewCell) {
+    func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
         if let indexPath = collectionView.indexPath(for: cell) {
-            print(#line, #function, indexPath)
+            print(#line, #function, indexPath, buttonAction)
         }
     }
 }
