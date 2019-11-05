@@ -35,7 +35,7 @@ struct User {
     }
 }
 
-extension User: ModelProtocol {
+extension User: CollectionViewCompatible {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, delegate: CollectionCellDelegate) -> UICollectionViewCell {
         guard let cell: UserCell = collectionView.dequeueReusableCell(indexPath: indexPath) else {
             fatalError()

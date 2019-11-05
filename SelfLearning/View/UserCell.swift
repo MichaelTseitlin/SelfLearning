@@ -15,7 +15,7 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
     
     var cellDelegate: CollectionCellDelegate?
     
-    func configure(data: ModelProtocol) {
+    func configure(data: CollectionViewCompatible) {
         if let user = data as? User {
             fullNameLabel.text = "\(user.firstName) \(user.lastName)"
             ageLabel.text = String(user.age)
