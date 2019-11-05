@@ -30,7 +30,7 @@ class CollectionViewController: UICollectionViewController {
     // MARK: - Properties
     
     var items = [ModelProtocol]()
-    var collectionViewSource = [Character : [String]]()
+    var collectionViewSource = [Character : [ModelProtocol]]()
     var collectionViewHeaders = [Character]()
     
     override func viewDidLoad() {
@@ -54,8 +54,9 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = Array(collectionViewSource.values)[indexPath.section]
         
-        let cell = items[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
+        let cell = section[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
   
         return cell
     }
@@ -76,33 +77,42 @@ class CollectionViewController: UICollectionViewController {
     private func sortingUsers() {
         if let users = items as? [User] {
             
-            var arrayOfNames: [String] = []
+            var arrayOfNames: [ModelProtocol] = []
             
             users.forEach { (user) in
-                arrayOfNames.append(user.firstName)
+                arrayOfNames.append(user)
             }
             
             getCollectionData(words: arrayOfNames)
         }
     }
     
-    private func createCollectionData(wordList: [String]) -> (firstSymbols: [Character], source: [Character : [String]]) {
+    private func createCollectionData(wordList: [ModelProtocol]) -> (firstSymbols: [Character], source: [Character : [ModelProtocol]]) {
         var firstSymbols = Set<Character>()
         
-        wordList.forEach { _ = firstSymbols.insert(getFirstSymbol(word: $0)) }
-        
-        var collectionViewSource = [Character : [String]]()
+        wordList.forEach { (user) in
+            if let newUser = user as? User {
+                _ = firstSymbols.insert(getFirstSymbol(word: newUser.firstName))
+            }
+        }
+                
+        var collectionViewSource = [Character : [ModelProtocol]]()
         
         for symbol in firstSymbols {
-            var words = [String]()
+            var words = [ModelProtocol]()
             
             for word in wordList {
-                if symbol == getFirstSymbol(word: word) {
-                    words.append(word)
+                if let newWord = word as? User {
+                    if symbol == getFirstSymbol(word: newWord.firstName) {
+                        words.append(word)
+                    }
                 }
             }
-            
-            collectionViewSource[symbol] = words.sorted(by: { $0 < $1})
+            collectionViewSource[symbol] = words.sorted(by: { (first, second) -> Bool in
+                guard let newFirst = first as? User,
+                    let newSecond = second as? User else { return false }
+                return newFirst.firstName < newSecond.firstName
+            })
         }
         
         let sortedSymbols = firstSymbols.sorted(by: { $0 < $1 })
@@ -110,7 +120,7 @@ class CollectionViewController: UICollectionViewController {
         return (sortedSymbols, collectionViewSource)
     }
     
-    private func getCollectionData(words: [String]) {
+    private func getCollectionData(words: [ModelProtocol]) {
         collectionViewSource = createCollectionData(wordList: words).source
         collectionViewHeaders = createCollectionData(wordList: words).firstSymbols
     }
