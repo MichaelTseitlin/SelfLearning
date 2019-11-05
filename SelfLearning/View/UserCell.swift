@@ -2,7 +2,7 @@
 //  UserCell.swift
 //  SelfLearning
 //
-//  Created by Michael Tseitlin on 21.10.2019.
+//  Created by Michael Tseitlin on 04.11.2019.
 //  Copyright © 2019 Michael Tseitlin. All rights reserved.
 //
 
@@ -10,17 +10,25 @@ import UIKit
 
 class UserCell: UICollectionViewCell, ConfigurableCell {
     
-    weak var cellDelegate: CollectionCellDelegate?
-
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     
-    func configure(data: MyProtocol) {
-        guard let data = data as? String else { return }
-        textLabel.text = data
-        self.backgroundColor = .yellow
+    var cellDelegate: CollectionCellDelegate?
+    
+    func configure(data: ModelProtocol) {
+        if let user = data as? User {
+            fullNameLabel.text = "\(user.firstName) \(user.lastName)"
+            ageLabel.text = String(user.age)
+            backgroundColor = .lightGray
+        }
     }
     
-    @IBAction func showMessage(sender: UIButton) {
+    @IBAction func sendMessage(_ sender: UIButton) {
         cellDelegate?.collectionCell(didSelect: self, buttonAction: .showMessage(self))
     }
+    
+    @IBAction func removeUser(_ sender: UIButton) {
+        cellDelegate?.collectionCell(didSelect: self, buttonAction: .removeUser(self))
+    }
+    
 }
