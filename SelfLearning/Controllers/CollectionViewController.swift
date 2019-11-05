@@ -30,48 +30,36 @@ class CollectionViewController: UICollectionViewController {
     // MARK: - Properties
     
     var items = [CollectionViewCompatible]()
-    var customSectionModel = [CustomSectionModel]()
+    var sectionController: SectionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         items = User.loadUserList()
         
-        let sectionCreator = SectionCreator(items: items)
-        customSectionModel = sectionCreator.customSectionModel
-        
-        collectionView.registerNibForCellClass(UserCell.self)
-        collectionView.register(UINib(nibName: String(describing: UserCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: UserCollectionReusableView.self))
+        sectionController = SectionController(items: items, collectionView: collectionView)
     }
     
     // MARK: - UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return customSectionModel.count
+        return sectionController?.numberOfSections(in: collectionView) ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return customSectionModel[section].model.count
+        return sectionController?.numberOfItemsInSection(collectionView, section: section) ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = customSectionModel[indexPath.section].model
+        guard let model = sectionController?.getObject(by: indexPath) else { return UICollectionViewCell() }
         
-        let cell = model[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
+        let cell = model.collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
   
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "UserCollectionReusableView", for: indexPath) as! UserCollectionReusableView
-            let section = customSectionModel[indexPath.section].section
-            reusableView.headerLabel.text = String(section)
-            return reusableView
-        default:
-            fatalError("Unexpected element kind")
-        }
+        return sectionController?.getSectionHeader(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath) ?? UICollectionReusableView()
     }
 }
 
@@ -89,8 +77,5 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - CollectionCellDelegate
 extension CollectionViewController: CollectionCellDelegate {
     func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
-        if let indexPath = collectionView.indexPath(for: cell) {
-            print(#line, #function, indexPath, buttonAction)
-        }
     }
 }

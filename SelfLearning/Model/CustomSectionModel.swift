@@ -8,9 +8,9 @@
 
 import Foundation
 
-class CustomSectionModel {
-    let section: Character
-    let model: [CollectionViewCompatible]
+struct CustomSectionModel {
+    var section: Character
+    var model: [CollectionViewCompatible]
     
     init(section: Character,
          model: [CollectionViewCompatible]) {

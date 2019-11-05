@@ -11,17 +11,15 @@ import Foundation
 class SectionCreator {
     
     // MARK: - Properties
-    private let items: [CollectionViewCompatible]
     var customSectionModel = [CustomSectionModel]()
     
     init(items: [CollectionViewCompatible]) {
-        self.items = items
-        sortingUsers()
+        sortingUsers(items: items)
     }
     
     // MARK: - Custom Methods
     
-    private func sortingUsers() {
+    private func sortingUsers(items: [CollectionViewCompatible]) {
         if let users = items as? [User] {
             
             var arrayOfNames: [CollectionViewCompatible] = []
@@ -58,7 +56,7 @@ class SectionCreator {
             
         }
         
-        self.customSectionModel = customSectionModel.sorted { $0.section < $1.section }
+        self.customSectionModel.sort { $0.section < $1.section }
     }
     
     private func getFirstSymbol(word: String) -> Character {
