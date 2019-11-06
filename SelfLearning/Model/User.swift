@@ -13,11 +13,7 @@ struct User {
     var firstName: String = "Bob"
     var lastName: String = "Marley"
     var age: Int = 69
-    
-    var titleFirstLetter: String {
-        return String(self.firstName[self.firstName.startIndex].uppercased())
-    }
-    
+        
     init(firstName: String, lastName: String, age: Int) {
         self.firstName = firstName
         self.lastName = lastName

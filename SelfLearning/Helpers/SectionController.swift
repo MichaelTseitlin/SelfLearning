@@ -13,16 +13,15 @@ protocol SectionInterface {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     func numberOfItemsInSection(_ collectionView: UICollectionView, section: Int) -> Int
     func getSectionHeader(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
+    func insertItem(at indexPath: IndexPath)
 }
 
 class SectionController: SectionInterface {
     
     var customSectionModel = [CustomSectionModel]()
     
-    init(items: [CollectionViewCompatible], collectionView: UICollectionView) {
+    init(items: [CollectionViewCompatible]) {
         self.customSectionModel = SectionCreator(items: items).customSectionModel
-        collectionView.registerNibForCellClass(UserCell.self)
-        collectionView.register(UINib(nibName: String(describing: UserCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: UserCollectionReusableView.self))
     }
     
     func getObject(by indexPath: IndexPath) -> CollectionViewCompatible {
@@ -47,5 +46,9 @@ class SectionController: SectionInterface {
         default:
             fatalError("Unexpected element kind")
         }
+    }
+    
+    func insertItem(at indexPath: IndexPath) {
+        customSectionModel[indexPath.section].model.append(User())
     }
 }

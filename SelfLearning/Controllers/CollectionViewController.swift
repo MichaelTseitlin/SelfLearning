@@ -25,41 +25,56 @@ enum ButtonAction {
     case removeUser(UserCell)
 }
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UIViewController {
     
     // MARK: - Properties
+    var sectionController: SectionController
     
-    var items = [CollectionViewCompatible]()
-    var sectionController: SectionController?
+    // MARK: - Init
+    required init?(coder: NSCoder) {
+        sectionController = SectionController(items: User.loadUserList())
+        super.init(coder: coder)
+    }
     
+    // MARK: - @IBOutlets
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        items = User.loadUserList()
-        
-        sectionController = SectionController(items: items, collectionView: collectionView)
+        collectionView.registerNibForCellClass(UserCell.self)
+        collectionView.register(UINib(nibName: String(describing: UserCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: UserCollectionReusableView.self))
     }
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: - @IBActions
+    @IBAction func addUser() {
+        sectionController.insertItem(at: IndexPath(row: 0, section: 1))
+        collectionView.reloadData()
+    }
+}
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sectionController?.numberOfSections(in: collectionView) ?? 0
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sectionController.numberOfSections(in: collectionView)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sectionController?.numberOfItemsInSection(collectionView, section: section) ?? 0
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sectionController.numberOfItemsInSection(collectionView, section: section)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let model = sectionController?.getObject(by: indexPath) else { return UICollectionViewCell() }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model = sectionController.getObject(by: indexPath)
         
         let cell = model.collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
-  
+        
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return sectionController?.getSectionHeader(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath) ?? UICollectionReusableView()
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return sectionController.getSectionHeader(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
     }
 }
 
@@ -77,5 +92,17 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - CollectionCellDelegate
 extension CollectionViewController: CollectionCellDelegate {
     func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        switch buttonAction {
+        case .removeUser:
+            sectionController.customSectionModel[indexPath.section].model.remove(at: indexPath.item)
+            collectionView.deleteItems(at: [indexPath])
+            
+            if sectionController.customSectionModel[indexPath.section].model.isEmpty {
+                sectionController.customSectionModel.remove(at: indexPath.section)
+                collectionView.deleteSections(IndexSet(arrayLiteral: indexPath.section))
+            }
+        case .showMessage: break
+        }
     }
 }
