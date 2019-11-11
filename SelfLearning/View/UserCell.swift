@@ -25,10 +25,12 @@ class UserCell: UICollectionViewCell, ConfigurableCell {
     
     @IBAction func sendMessage(_ sender: UIButton) {
         cellDelegate?.collectionCell(didSelect: self, buttonAction: .showMessage(self))
+//        cellDelegate?.collectionCell(didSelect: self, button: sender)
     }
     
     @IBAction func removeUser(_ sender: UIButton) {
         cellDelegate?.collectionCell(didSelect: self, buttonAction: .removeUser(self))
+//        cellDelegate?.collectionCell(didSelect: self, button: sender)
     }
     
 }

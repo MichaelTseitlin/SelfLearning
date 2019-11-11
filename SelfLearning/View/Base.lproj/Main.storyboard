@@ -72,7 +72,7 @@
                     <navigationItem key="navigationItem" id="BBO-la-B64">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="O1a-mA-uof">
                             <connections>
-                                <action selector="addUser" destination="nWc-z8-sIT" id="o6c-cI-hdy"/>
+                                <action selector="addUser:" destination="nWc-z8-sIT" id="Kzh-Ab-HK8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

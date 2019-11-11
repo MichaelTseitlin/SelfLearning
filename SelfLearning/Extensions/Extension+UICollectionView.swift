@@ -18,5 +18,4 @@ extension UICollectionView {
     func dequeueReusableCell<T: UICollectionViewCell>(indexPath: IndexPath) -> T? where T: ConfigurableCell {
         return dequeueReusableCell(withReuseIdentifier: String(describing: T.self), for: indexPath) as? T
     }
-    
 }

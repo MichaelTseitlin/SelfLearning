@@ -23,7 +23,7 @@ struct User {
     init() {}
     
     static func loadUserList() -> [User] {
-        return [User(), User(), User(), User(),
+        return [User(),
         User(firstName: "Alexandr", lastName: "Lobanov", age: 28),
         User(firstName: "Alexandr", lastName: "Burla", age: 40),
         User(firstName: "Michael", lastName: "Tseitlin", age: 25),

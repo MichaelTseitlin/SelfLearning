@@ -48,8 +48,11 @@ class CollectionViewController: UIViewController {
     }
     
     // MARK: - @IBActions
-    @IBAction func addUser() {
-        sectionController.insertItem(at: IndexPath(row: 0, section: 1))
+    @IBAction func addUser(_ sender: UIButton) {
+    
+        sectionController.insertItem(item: User(firstName: Lorem.firstName,
+                                                lastName: Lorem.lastName,
+                                                age: 25), vc: self)
         collectionView.reloadData()
     }
 }
@@ -58,11 +61,11 @@ class CollectionViewController: UIViewController {
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sectionController.numberOfSections(in: collectionView)
+        return sectionController.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sectionController.numberOfItemsInSection(collectionView, section: section)
+        return sectionController.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

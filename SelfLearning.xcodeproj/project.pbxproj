@@ -17,6 +17,7 @@
 		844C502A2359A41F00219025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C50292359A41F00219025 /* Assets.xcassets */; };
 		844C502D2359A41F00219025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C502B2359A41F00219025 /* LaunchScreen.storyboard */; };
 		8463B9EC235EF60D0023366A /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463B9EB235EF60D0023366A /* Extension+UICollectionView.swift */; };
+		846962392374431C00732077 /* LoremSwiftum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846962382374431C00732077 /* LoremSwiftum.swift */; };
 		84AE7579235DACB80010E895 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7578235DACB80010E895 /* CollectionViewController.swift */; };
 		84B129082371C96C007A6C96 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B129072371C96C007A6C96 /* SectionController.swift */; };
 		84FA0CC023718C53008FDEC6 /* UserCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA0CBE23718C53008FDEC6 /* UserCollectionReusableView.swift */; };
@@ -38,6 +39,7 @@
 		844C502C2359A41F00219025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844C502E2359A41F00219025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8463B9EB235EF60D0023366A /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
+		846962382374431C00732077 /* LoremSwiftum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremSwiftum.swift; sourceTree = "<group>"; };
 		84AE7578235DACB80010E895 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		84B129072371C96C007A6C96 /* SectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
 		84FA0CBE23718C53008FDEC6 /* UserCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				84FA0CC52371AE90008FDEC6 /* SectionCreator.swift */,
 				84B129072371C96C007A6C96 /* SectionController.swift */,
+				846962382374431C00732077 /* LoremSwiftum.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				84FA0CC32371AC4D008FDEC6 /* CustomSectionModel.swift in Sources */,
 				84FA0CC023718C53008FDEC6 /* UserCollectionReusableView.swift in Sources */,
 				844C50252359A41700219025 /* ViewController.swift in Sources */,
+				846962392374431C00732077 /* LoremSwiftum.swift in Sources */,
 				84AE7579235DACB80010E895 /* CollectionViewController.swift in Sources */,
 				8463B9EC235EF60D0023366A /* Extension+UICollectionView.swift in Sources */,
 				84B129082371C96C007A6C96 /* SectionController.swift in Sources */,

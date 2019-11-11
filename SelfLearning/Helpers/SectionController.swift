@@ -10,10 +10,10 @@ import UIKit
 
 protocol SectionInterface {
     func getObject(by indexPath: IndexPath) -> CollectionViewCompatible
-    func numberOfSections(in collectionView: UICollectionView) -> Int
-    func numberOfItemsInSection(_ collectionView: UICollectionView, section: Int) -> Int
+    func numberOfSections() -> Int
+    func numberOfItemsInSection(section: Int) -> Int
     func getSectionHeader(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
-    func insertItem(at indexPath: IndexPath)
+    func insertItem<T: CollectionViewCompatible>(item: T, vc: UIViewController)
 }
 
 class SectionController: SectionInterface {
@@ -28,11 +28,11 @@ class SectionController: SectionInterface {
         return customSectionModel[indexPath.section].model[indexPath.row]
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections() -> Int {
         return customSectionModel.count
     }
     
-    func numberOfItemsInSection(_ collectionView: UICollectionView, section: Int) -> Int {
+    func numberOfItemsInSection(section: Int) -> Int {
         return customSectionModel[section].model.count
     }
     
@@ -48,7 +48,42 @@ class SectionController: SectionInterface {
         }
     }
     
-    func insertItem(at indexPath: IndexPath) {
-        customSectionModel[indexPath.section].model.append(User())
+    func insertItem<T>(item: T, vc: UIViewController) where T : CollectionViewCompatible {
+        guard let newItem = SectionCreator(items: [item]).customSectionModel.first else { return }
+
+        var section = 0
+        
+        let isNewItem = customSectionModel.contains { (sectionModel) -> Bool in
+            section += 1
+            if sectionModel.section == newItem.section {
+                section -= 1
+                customSectionModel[section].model.insert(item, at: 0)
+                showAlert(item, in: vc)
+                return true
+            } else {
+                return false
+            }
+        }
+        
+            if !isNewItem {
+                customSectionModel.append(newItem)
+                showAlert(item, in: vc)
+                customSectionModel.sort { $0.section < $1.section}
+            }
+            return
+    }
+}
+
+extension SectionController {
+    private func showAlert(_ item: CollectionViewCompatible, in vc: UIViewController) {
+        
+        guard let user = item as? User else { return }
+        
+        let alert = UIAlertController(title: "\(user.firstName) \(user.lastName)", message: "was added!", preferredStyle: .alert)
+        vc.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true, completion: nil)
+        }
     }
 }
