@@ -49,14 +49,14 @@ class CollectionViewController: UIViewController {
     
     // MARK: - @IBActions
     @IBAction func addUser(_ sender: UIButton) {
-    
-        sectionController.insertItem(item: User(firstName: Lorem.firstName,
-                                                lastName: Lorem.lastName,
-                                                age: 25), vc: self)
+        
+        sectionController.insert(User(firstName: Lorem.firstName,
+                                      lastName: Lorem.lastName,
+                                      age: 25))
         collectionView.reloadData()
     }
 }
-    
+
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     

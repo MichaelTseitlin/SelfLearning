@@ -13,7 +13,7 @@ protocol SectionInterface {
     func numberOfSections() -> Int
     func numberOfItemsInSection(section: Int) -> Int
     func getSectionHeader(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
-    func insertItem<T: CollectionViewCompatible>(item: T, vc: UIViewController)
+    func insert<T: CollectionViewCompatible>(_ item: T)
 }
 
 class SectionController: SectionInterface {
@@ -48,29 +48,10 @@ class SectionController: SectionInterface {
         }
     }
     
-    func insertItem<T>(item: T, vc: UIViewController) where T : CollectionViewCompatible {
-        guard let newItem = SectionCreator(items: [item]).customSectionModel.first else { return }
-
-        var section = 0
-        
-        let isNewItem = customSectionModel.contains { (sectionModel) -> Bool in
-            section += 1
-            if sectionModel.section == newItem.section {
-                section -= 1
-                customSectionModel[section].model.insert(item, at: 0)
-                showAlert(item, in: vc)
-                return true
-            } else {
-                return false
-            }
-        }
-        
-            if !isNewItem {
-                customSectionModel.append(newItem)
-                showAlert(item, in: vc)
-                customSectionModel.sort { $0.section < $1.section}
-            }
-            return
+    func insert<T>(_ item: T) where T : CollectionViewCompatible {
+        let sectionCreator = SectionCreator(items: customSectionModel)
+        sectionCreator.insert(item: [item])
+        self.customSectionModel = sectionCreator.customSectionModel
     }
 }
 
