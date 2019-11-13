@@ -14,7 +14,7 @@ class SectionCreator {
     var customSectionModel = [CustomSectionModel]()
     
     init(items: [CollectionViewCompatible]) {
-        sortingUsers(items: items)
+        createSectionModel(by: items)
     }
     
     init(items: [CustomSectionModel]) {
@@ -24,28 +24,10 @@ class SectionCreator {
     // MARK: - Custom Methods
     
     func insert(item: [CollectionViewCompatible]) {
-        
-        var firstSymbols = Set<Character>()
-        
-        item.forEach { (user) in
-            if let newUser = user as? User {
-                _ = firstSymbols.insert(getFirstSymbol(word: newUser.firstName))
-            }
-        }
-        
-        firstSymbols.forEach { symbol in
-            var words = [CollectionViewCompatible]()
-            
-            for word in item {
-                if let newWord = word as? User {
-                    if symbol == getFirstSymbol(word: newWord.firstName) {
-                        words.append(word)
-                    }
-                }
-            }
+        createDictionary(by: item) { (section, model) in
             
             let isNewItem = customSectionModel.enumerated().contains { (model) -> Bool in
-                if model.element.section == symbol {
+                if model.element.section == section {
                     customSectionModel[model.offset].model.insert(item.first!, at: 0)
                     return true
                 }
@@ -53,50 +35,27 @@ class SectionCreator {
             }
             
             if !isNewItem {
-                customSectionModel.append(CustomSectionModel(section: symbol, model: words))
+                customSectionModel.append(CustomSectionModel(section: section, model: model))
                 customSectionModel.sort { $0.section < $1.section}
             }
         }
     }
-    
-    private func sortingUsers(items: [CollectionViewCompatible]) {
-        if let users = items as? [User] {
-            
-            var arrayOfNames: [CollectionViewCompatible] = []
-            
-            users.forEach { (user) in
-                arrayOfNames.append(user)
-            }
-            
-            createCollectionData(items: arrayOfNames)
+   
+    private func createSectionModel(by items: [CollectionViewCompatible]) {
+        
+        createDictionary(by: items) { (section, model) in
+            self.customSectionModel.append(CustomSectionModel(section: section, model: model))
+            self.customSectionModel.sort { $0.section < $1.section }
         }
     }
     
-    private func createCollectionData(items: [CollectionViewCompatible]) {
-        var firstSymbols = Set<Character>()
-        
-        items.forEach { (user) in
-            if let newUser = user as? User {
-                _ = firstSymbols.insert(getFirstSymbol(word: newUser.firstName))
+    private func createDictionary(by items: [CollectionViewCompatible], completion: (String, [CollectionViewCompatible]) -> ()) {
+        if let user = items as? [User] {
+            let usersByLetter = Dictionary(grouping: user, by: { getFirstSymbol(word: $0.firstName).uppercased() })
+            usersByLetter.forEach {
+                completion($0.key, $0.value)
             }
         }
-        
-        firstSymbols.forEach { symbol in
-            var words = [CollectionViewCompatible]()
-            
-            for word in items {
-                if let newWord = word as? User {
-                    if symbol == getFirstSymbol(word: newWord.firstName) {
-                        words.append(word)
-                    }
-                }
-            }
-            
-            self.customSectionModel.append(CustomSectionModel(section: symbol, model: words))
-            
-        }
-        
-        self.customSectionModel.sort { $0.section < $1.section }
     }
     
     private func getFirstSymbol(word: String) -> Character {

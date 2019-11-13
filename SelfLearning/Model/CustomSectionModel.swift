@@ -9,10 +9,10 @@
 import Foundation
 
 struct CustomSectionModel {
-    var section: Character
+    var section: String
     var model: [CollectionViewCompatible]
     
-    init(section: Character,
+    init(section: String,
          model: [CollectionViewCompatible]) {
         self.section = section
         self.model = model
