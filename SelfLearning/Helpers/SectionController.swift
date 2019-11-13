@@ -14,10 +14,11 @@ protocol SectionInterface {
     func numberOfItemsInSection(section: Int) -> Int
     func getSectionHeader(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     func insert<T: CollectionViewCompatible>(_ item: T)
+    func sizeForItem(_ collectionView: UICollectionView) -> CGSize
+    func referenceSizeForHeaderInSection(_ collectionView: UICollectionView) -> CGSize
 }
 
 class SectionController: SectionInterface {
-    
     var customSectionModel = [CustomSectionModel]()
     
     init(items: [CollectionViewCompatible]) {
@@ -53,6 +54,16 @@ class SectionController: SectionInterface {
         sectionCreator.insert(item: [item])
         self.customSectionModel = sectionCreator.customSectionModel
     }
+    
+    func sizeForItem(_ collectionView: UICollectionView) -> CGSize {
+        return .init(width: collectionView.frame.width - 20, height: 100)
+    }
+    
+    func referenceSizeForHeaderInSection(_ collectionView: UICollectionView) -> CGSize {
+        return .init(width: collectionView.frame.width, height: 51)
+    }
+    
+    
 }
 
 extension SectionController {

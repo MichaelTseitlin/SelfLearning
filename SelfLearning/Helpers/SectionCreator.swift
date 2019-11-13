@@ -35,7 +35,7 @@ class SectionCreator {
             }
             
             if !isNewItem {
-                customSectionModel.append(CustomSectionModel(section: section, model: model))
+                customSectionModel.insert(CustomSectionModel(section: section, model: model), at: 0)
                 customSectionModel.sort { $0.section < $1.section}
             }
         }
@@ -44,7 +44,7 @@ class SectionCreator {
     private func createSectionModel(by items: [CollectionViewCompatible]) {
         
         createDictionary(by: items) { (section, model) in
-            self.customSectionModel.append(CustomSectionModel(section: section, model: model))
+            self.customSectionModel.insert(CustomSectionModel(section: section, model: model), at: 0)
             self.customSectionModel.sort { $0.section < $1.section }
         }
     }

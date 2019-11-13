@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CollectionViewCompatible {
-    func collectionView (_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, delegate: CollectionCellDelegate) -> UICollectionViewCell
+    func collectionView (_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
 }
 
 protocol ConfigurableCell {
@@ -28,7 +28,7 @@ enum ButtonAction {
 class CollectionViewController: UIViewController {
     
     // MARK: - Properties
-    var sectionController: SectionController
+    var sectionController: SectionInterface
     
     // MARK: - Init
     required init?(coder: NSCoder) {
@@ -44,6 +44,7 @@ class CollectionViewController: UIViewController {
         super.viewDidLoad()
         
         collectionView.registerNibForCellClass(UserCell.self)
+        collectionView.registerNibForCellClass(PictureCell.self)
         collectionView.register(UINib(nibName: String(describing: UserCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: UserCollectionReusableView.self))
     }
     
@@ -53,6 +54,19 @@ class CollectionViewController: UIViewController {
         sectionController.insert(User(firstName: Lorem.firstName,
                                       lastName: Lorem.lastName,
                                       age: 25))
+        collectionView.reloadData()
+    }
+    
+    @IBAction func segmentedControll(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0: print(#line, #function, "")
+            sectionController = SectionController(items: User.loadUserList())
+        case 1: print(#line, #function, "")
+        sectionController = PictureController(pictures: Picture.loadPictures())
+        default:
+            break
+        }
         collectionView.reloadData()
     }
 }
@@ -71,7 +85,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = sectionController.getObject(by: indexPath)
         
-        let cell = model.collectionView(collectionView, cellForItemAt: indexPath, delegate: self)
+        let cell = model.collectionView(collectionView, cellForItemAt: indexPath)
         
         return cell
     }
@@ -84,28 +98,28 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 // MARK: - UICollectionViewDelegateFlowLayout
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: collectionView.frame.width - 20, height: 100)
+        return sectionController.sizeForItem(collectionView)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: collectionView.frame.width, height: 51)
+        return sectionController.referenceSizeForHeaderInSection(collectionView)
     }
 }
 
 // MARK: - CollectionCellDelegate
-extension CollectionViewController: CollectionCellDelegate {
-    func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        switch buttonAction {
-        case .removeUser:
-            sectionController.customSectionModel[indexPath.section].model.remove(at: indexPath.item)
-            collectionView.deleteItems(at: [indexPath])
-            
-            if sectionController.customSectionModel[indexPath.section].model.isEmpty {
-                sectionController.customSectionModel.remove(at: indexPath.section)
-                collectionView.deleteSections(IndexSet(arrayLiteral: indexPath.section))
-            }
-        case .showMessage: break
-        }
-    }
-}
+//extension CollectionViewController: CollectionCellDelegate {
+//    func collectionCell(didSelect cell: UICollectionViewCell, buttonAction: ButtonAction) {
+//        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+//        switch buttonAction {
+//        case .removeUser:
+//            sectionController.customSectionModel[indexPath.section].model.remove(at: indexPath.item)
+//            collectionView.deleteItems(at: [indexPath])
+//
+//            if sectionController.customSectionModel[indexPath.section].model.isEmpty {
+//                sectionController.customSectionModel.remove(at: indexPath.section)
+//                collectionView.deleteSections(IndexSet(arrayLiteral: indexPath.section))
+//            }
+//        case .showMessage: break
+//        }
+//    }
+//}

@@ -32,11 +32,11 @@ struct User {
 }
 
 extension User: CollectionViewCompatible {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, delegate: CollectionCellDelegate) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: UserCell = collectionView.dequeueReusableCell(indexPath: indexPath) else {
             fatalError()
         }
-        cell.cellDelegate = delegate
+//        cell.cellDelegate = delegate
         cell.configure(data: self)
         return cell
     }
